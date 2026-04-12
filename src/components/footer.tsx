@@ -17,7 +17,7 @@ export function Footer() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/mm_logo.png"
+            src="/logo.png"
             alt="Muffin Menu"
             width={32}
             height={32}

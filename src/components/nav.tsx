@@ -22,7 +22,7 @@ export function Nav() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/mm_logo.png"
+              src="/logo.png"
               alt="Muffin Menu"
               width={36}
               height={36}
