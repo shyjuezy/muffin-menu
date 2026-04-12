@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muffin Menu — Final Direction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Brand tokens */
+      :root {
+        --blue: #1d6db5;
+        --blue-dark: #155299;
+        --blue-bg: #ebf5ff;
+        --navy: #1b3272;
+        --gold: #f4b223;
+        --gold-dark: #d9960d;
+        --gold-bg: #fffbeb;
+        --text: #111827;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --surface: #f8fafe;
+      }
+
+      .btn-gold {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        transition: all 0.18s;
+        box-shadow: 0 6px 20px rgba(244, 178, 35, 0.28);
+      }
+      .btn-gold:hover {
+        background: var(--gold-dark);
+        box-shadow: 0 8px 28px rgba(244, 178, 35, 0.38);
+      }
+
+      .btn-outline {
+        border: 1.5px solid var(--border);
+        color: #374151;
+        transition: all 0.18s;
+      }
+      .btn-outline:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+      }
+
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+      .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(29, 109, 181, 0.1);
+        border-color: #bfdbfe;
+      }
+
+      .kds-ticket {
+        transition: all 0.2s;
+      }
+      .kds-ticket:hover {
+        transform: scale(1.02);
+      }
+
+      /* Sticky nav blur */
+      .nav-sticky {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+      }
+    </style>
+  </head>
+  <body style="background: #ffffff; color: #111827">
+    <!-- Badge -->
+    <div
+      style="background: #1d6db5; color: white"
+      class="text-center py-2 text-xs font-bold tracking-widest uppercase"
+    >
+      Final Direction — V3 Layout · V6 Colors &nbsp;·&nbsp;
+      <a href="index.html" class="underline opacity-70">← All Variants</a>
+    </div>
+
+    <!-- ── NAV ── -->
+    <nav class="nav-sticky">
+      <div
+        class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-2.5">
+            <img
+              src="mm_logo.png"
+              alt="Muffin Menu"
+              class="h-9 object-contain"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-lg font-black" style="color: #1d6db5"
+              >Muffin<span style="color: #f4b223">Menu</span></span
+            >
+          </div>
+          <div
+            class="hidden md:flex items-center gap-7 text-sm font-medium"
+            style="color: #6b7280"
+          >
+            <a href="#features" class="hover:text-gray-900 transition"
+              >Features</a
+            >
+            <a href="#" class="hover:text-gray-900 transition">Pricing</a>
+            <a href="#" class="hover:text-gray-900 transition">Customers</a>
+            <a href="#" class="hover:text-gray-900 transition">Docs</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a
+            href="#"
+            class="text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+            style="color: #374151"
+            >Sign In</a
+          >
+          <a href="#" class="btn-gold px-5 py-2.5 rounded-xl text-sm"
+            >Start Free →</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section
+      class="max-w-7xl mx-auto px-8 pt-20 pb-12 text-center relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 pointer-events-none"
+        style="
+          background: radial-gradient(
+            ellipse at 50% 0%,
+            rgba(29, 109, 181, 0.07) 0%,
+            transparent 65%
+          );
+        "
+      ></div>
+
+      <!-- Announcement pill -->
+      <div
+        class="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold mb-8"
+        style="background: #ebf5ff; color: #1d6db5; border: 1px solid #bfdbfe"
+      >
+        <span
+          class="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block animate-pulse"
+        ></span>
+        New: Online ordering integration is now live
+      </div>
+
+      <h1
+        class="text-6xl md:text-7xl font-black leading-none mb-6"
+        style="color: #111827; letter-spacing: -2.5px"
+      >
+        The Restaurant OS<br /><span style="color: #1d6db5"
+          >You've Been Waiting For.</span
+        >
+      </h1>
+
+      <p
+        class="text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+        style="color: #6b7280"
+      >
+        One platform to manage your kitchen display, point of sale, menu, and
+        analytics. Built for restaurants that refuse to compromise on speed or
+        accuracy.
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10"
+      >
+        <a href="#" class="btn-gold px-8 py-4 rounded-xl text-base">
+          Start Free Trial — No Card Needed
+        </a>
+        <a
+          href="#"
+          class="btn-outline px-8 py-4 rounded-xl text-base font-semibold"
+        >
+          Request a Demo
+        </a>
+      </div>
+
+      <!-- Social proof line -->
+      <div
+        class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm"
+        style="color: #9ca3af"
+      >
+        <span>Trusted by teams at</span>
+        <span class="font-semibold" style="color: #6b7280">Bistro Nord</span>
+        <span style="color: #d1d5db">·</span>
+        <span class="font-semibold" style="color: #6b7280"
+          >Harvest Kitchen</span
+        >
+        <span style="color: #d1d5db">·</span>
+        <span class="font-semibold" style="color: #6b7280"
+          >The Daily Plate</span
+        >
+        <span style="color: #d1d5db">·</span>
+        <span class="font-semibold" style="color: #6b7280">Urban Bowl Co.</span>
+      </div>
+    </section>
+
+    <!-- ── KDS MOCK SCREENSHOT ── -->
+    <section class="max-w-5xl mx-auto px-8 pb-24">
+      <div
+        class="rounded-2xl overflow-hidden shadow-2xl"
+        style="border: 1px solid #e5e7eb"
+      >
+        <!-- Browser chrome -->
+        <div
+          class="px-5 py-3 flex items-center gap-2"
+          style="background: #f9fafb; border-bottom: 1px solid #e5e7eb"
+        >
+          <div class="flex gap-1.5">
+            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+            <div class="w-3 h-3 rounded-full" style="background: #f4b223"></div>
+            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+          </div>
+          <div
+            class="mx-auto text-xs font-medium px-20 py-1 rounded-md"
+            style="background: white; border: 1px solid #e5e7eb; color: #9ca3af"
+          >
+            app.muffinmenu.com/kitchen
+          </div>
+          <div class="w-14"></div>
+        </div>
+
+        <!-- KDS UI -->
+        <div class="p-5" style="background: #0f1f4a">
+          <!-- KDS header bar -->
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <span class="text-white font-bold text-sm">Kitchen Display</span>
+              <span
+                class="text-xs px-2 py-1 rounded-full font-semibold"
+                style="background: rgba(34, 197, 94, 0.18); color: #4ade80"
+                >● Live</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-4 text-xs"
+              style="color: rgba(255, 255, 255, 0.4)"
+            >
+              <span>All Stations</span>
+              <span style="color: rgba(255, 255, 255, 0.15)">|</span>
+              <span>6 active orders</span>
+              <span style="color: rgba(255, 255, 255, 0.15)">|</span>
+              <span>Avg: 7.4 min</span>
+            </div>
+          </div>
+
+          <!-- Ticket grid -->
+          <div class="grid grid-cols-4 gap-3">
+            <!-- Green: on time -->
+            <div
+              class="kds-ticket rounded-xl p-4"
+              style="
+                background: rgba(255, 255, 255, 0.07);
+                border-left: 3px solid #22c55e;
+              "
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <div class="text-xs font-bold text-white">TABLE 2</div>
+                  <div
+                    class="text-xs mt-0.5"
+                    style="color: rgba(255, 255, 255, 0.4)"
+                  >
+                    Dine-in
+                  </div>
+                </div>
+                <span
+                  class="text-xs px-1.5 py-0.5 rounded font-bold"
+                  style="background: rgba(34, 197, 94, 0.15); color: #4ade80"
+                  >1:42</span
+                >
+              </div>
+              <div class="space-y-1.5 text-xs mb-4">
+                <div class="text-white">× 1 Chicken Wrap</div>
+                <div class="text-white">× 2 Sweet Potato Fries</div>
+                <div style="color: rgba(255, 255, 255, 0.4)">
+                  └ Extra crispy
+                </div>
+              </div>
+              <button
+                class="w-full py-1.5 rounded-lg text-xs font-semibold"
+                style="background: rgba(34, 197, 94, 0.2); color: #4ade80"
+              >
+                BUMP ✓
+              </button>
+            </div>
+
+            <!-- Amber: getting long -->
+            <div
+              class="kds-ticket rounded-xl p-4"
+              style="
+                background: rgba(255, 255, 255, 0.07);
+                border-left: 3px solid #f4b223;
+              "
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <div class="text-xs font-bold text-white">TABLE 5</div>
+                  <div
+                    class="text-xs mt-0.5"
+                    style="color: rgba(255, 255, 255, 0.4)"
+                  >
+                    Dine-in
+                  </div>
+                </div>
+                <span
+                  class="text-xs px-1.5 py-0.5 rounded font-bold"
+                  style="background: rgba(244, 178, 35, 0.15); color: #f4b223"
+                  >6:11</span
+                >
+              </div>
+              <div class="space-y-1.5 text-xs mb-4">
+                <div class="text-white">× 1 Ribeye Steak</div>
+                <div style="color: rgba(255, 255, 255, 0.4)">└ Medium rare</div>
+                <div class="text-white">× 1 House Salad</div>
+                <div class="text-white">× 1 Garlic Bread</div>
+              </div>
+              <button
+                class="w-full py-1.5 rounded-lg text-xs font-semibold"
+                style="background: rgba(244, 178, 35, 0.2); color: #f4b223"
+              >
+                IN PROGRESS
+              </button>
+            </div>
+
+            <!-- Red: urgent -->
+            <div
+              class="kds-ticket rounded-xl p-4"
+              style="
+                background: rgba(255, 255, 255, 0.07);
+                border-left: 3px solid #ef4444;
+              "
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <div class="text-xs font-bold text-white">TAKEOUT #88</div>
+                  <div
+                    class="text-xs mt-0.5"
+                    style="color: rgba(255, 255, 255, 0.4)"
+                  >
+                    Pickup
+                  </div>
+                </div>
+                <span
+                  class="text-xs px-1.5 py-0.5 rounded font-bold"
+                  style="background: rgba(239, 68, 68, 0.15); color: #f87171"
+                  >12:33</span
+                >
+              </div>
+              <div class="space-y-1.5 text-xs mb-4">
+                <div class="text-white">× 3 BBQ Pulled Pork</div>
+                <div class="text-white">× 3 Coleslaw</div>
+                <div class="text-white">× 2 Corn Bread</div>
+              </div>
+              <button
+                class="w-full py-1.5 rounded-lg text-xs font-semibold"
+                style="background: rgba(239, 68, 68, 0.2); color: #f87171"
+              >
+                URGENT !
+              </button>
+            </div>
+
+            <!-- Green: fresh -->
+            <div
+              class="kds-ticket rounded-xl p-4"
+              style="
+                background: rgba(255, 255, 255, 0.07);
+                border-left: 3px solid #22c55e;
+              "
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <div class="text-xs font-bold text-white">TABLE 9</div>
+                  <div
+                    class="text-xs mt-0.5"
+                    style="color: rgba(255, 255, 255, 0.4)"
+                  >
+                    Dine-in
+                  </div>
+                </div>
+                <span
+                  class="text-xs px-1.5 py-0.5 rounded font-bold"
+                  style="background: rgba(34, 197, 94, 0.15); color: #4ade80"
+                  >0:55</span
+                >
+              </div>
+              <div class="space-y-1.5 text-xs mb-4">
+                <div class="text-white">× 2 Veggie Bowl</div>
+                <div style="color: rgba(255, 255, 255, 0.4)">└ No onions</div>
+                <div class="text-white">× 1 Fresh Lemonade</div>
+              </div>
+              <button
+                class="w-full py-1.5 rounded-lg text-xs font-semibold"
+                style="background: rgba(34, 197, 94, 0.2); color: #4ade80"
+              >
+                BUMP ✓
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-sm mt-4" style="color: #9ca3af">
+        Real-time kitchen display — updates the instant an order is placed
+      </p>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section id="features" style="background: #f8fafe" class="py-24">
+      <div class="max-w-7xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <p
+            class="text-xs font-bold uppercase tracking-widest mb-3"
+            style="color: #1d6db5"
+          >
+            Platform
+          </p>
+          <h2 class="text-4xl font-black mb-4" style="color: #111827">
+            Designed for Every Station
+          </h2>
+          <p class="text-lg max-w-xl mx-auto" style="color: #6b7280">
+            Counter, kitchen, back office — all connected. One login for your
+            whole team.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #ebf5ff"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1D6DB5"
+                stroke-width="2"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Kitchen Display (KDS)
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Live order tickets with timers, bump tracking, and priority
+              alerts. Works on any screen — tablet, monitor, or custom display.
+            </p>
+            <div class="text-xs font-semibold" style="color: #1d6db5">
+              → Ticket management, station routing, bump reports
+            </div>
+          </div>
+
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #fffbeb"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D97706"
+                stroke-width="2"
+              >
+                <rect x="1" y="4" width="22" height="16" rx="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Point of Sale (POS)
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Fast order entry with modifiers, split checks, and discount
+              support. Accepts all payment methods with built-in tipping.
+            </p>
+            <div class="text-xs font-semibold" style="color: #d97706">
+              → Dine-in, takeout &amp; delivery modes
+            </div>
+          </div>
+
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #f0fdf4"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#16a34a"
+                stroke-width="2"
+              >
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Analytics Dashboard
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Real-time sales, item performance, hourly breakdowns, and staff
+              metrics. Export to CSV or connect to your accounting tool.
+            </p>
+            <div class="text-xs font-semibold" style="color: #16a34a">
+              → Daily reports, trends, custom date ranges
+            </div>
+          </div>
+
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #fff1f2"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#e11d48"
+                stroke-width="2"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="12" y1="18" x2="12" y2="12" />
+                <line x1="9" y1="15" x2="15" y2="15" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Menu Builder
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Drag-and-drop editor with categories, modifiers, photos, and
+              availability toggles. Update everything in one place — syncs
+              instantly.
+            </p>
+            <div class="text-xs font-semibold" style="color: #e11d48">
+              → Syncs to KDS, POS &amp; online ordering
+            </div>
+          </div>
+
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #f5f3ff"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#7c3aed"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Multi-location
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Centralized control for all your branches. Standardize menus,
+              compare location performance, and push updates chain-wide.
+            </p>
+            <div class="text-xs font-semibold" style="color: #7c3aed">
+              → Per-location menus, consolidated reporting
+            </div>
+          </div>
+
+          <div class="feature-card rounded-2xl p-7">
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style="background: #ebf5ff"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1D6DB5"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-lg mb-2" style="color: #111827">
+              Staff &amp; Roles
+            </h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: #6b7280">
+              Role-based access for managers, cashiers, and kitchen staff.
+              Clock-in tracking, shift notes, and full audit logs included.
+            </p>
+            <div class="text-xs font-semibold" style="color: #1d6db5">
+              → PIN login, permissions, activity history
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <section style="background: white" class="py-20">
+      <div class="max-w-7xl mx-auto px-8 text-center">
+        <p
+          class="text-xs font-bold uppercase tracking-widest mb-12"
+          style="color: #9ca3af"
+        >
+          By the numbers
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <div class="text-5xl font-black mb-2" style="color: #1d6db5">
+              500+
+            </div>
+            <div class="text-sm" style="color: #6b7280">Restaurants Active</div>
+          </div>
+          <div>
+            <div class="text-5xl font-black mb-2" style="color: #1d6db5">
+              50K+
+            </div>
+            <div class="text-sm" style="color: #6b7280">Orders Per Day</div>
+          </div>
+          <div>
+            <div class="text-5xl font-black mb-2" style="color: #1d6db5">
+              99.9%
+            </div>
+            <div class="text-sm" style="color: #6b7280">Platform Uptime</div>
+          </div>
+          <div>
+            <div class="text-5xl font-black mb-2" style="color: #f4b223">
+              4.9★
+            </div>
+            <div class="text-sm" style="color: #6b7280">Average Rating</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TESTIMONIAL ── -->
+    <section style="background: #f8fafe" class="py-20">
+      <div class="max-w-4xl mx-auto px-8 text-center">
+        <div class="text-5xl mb-6" style="color: #f4b223; font-family: serif">
+          "
+        </div>
+        <blockquote
+          class="text-2xl font-semibold leading-relaxed mb-8"
+          style="color: #111827"
+        >
+          We cut ticket errors by 80% in the first week. Our kitchen is running
+          faster, the staff is less stressed, and customers keep coming back.
+        </blockquote>
+        <div class="flex items-center justify-center gap-4">
+          <div
+            class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white text-sm"
+            style="background: #1d6db5"
+          >
+            MR
+          </div>
+          <div class="text-left">
+            <div class="font-bold" style="color: #111827">Maria Rodriguez</div>
+            <div class="text-sm" style="color: #9ca3af">
+              Owner, Casa Fuego — 3 locations
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section style="background: white" class="py-24">
+      <div class="max-w-7xl mx-auto px-8">
+        <div
+          class="rounded-3xl p-12 md:p-16 text-white text-center relative overflow-hidden"
+          style="background: linear-gradient(135deg, #1d6db5 0%, #155299 100%)"
+        >
+          <!-- Subtle gold glow -->
+          <div
+            class="absolute inset-0 pointer-events-none"
+            style="
+              background: radial-gradient(
+                ellipse at 70% 50%,
+                rgba(244, 178, 35, 0.18),
+                transparent 60%
+              );
+            "
+          ></div>
+          <h2
+            class="text-4xl md:text-5xl font-black mb-4 relative"
+            style="letter-spacing: -1px"
+          >
+            Start for Free. Scale as You Grow.
+          </h2>
+          <p
+            class="text-lg mb-10 max-w-xl mx-auto relative"
+            style="color: rgba(255, 255, 255, 0.72)"
+          >
+            No contracts. No setup fees. Works on hardware you already own. Up
+            and running in under 3 minutes.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4 relative"
+          >
+            <a href="#" class="btn-gold px-8 py-4 rounded-xl text-base"
+              >Get Started Free →</a
+            >
+            <a
+              href="#"
+              class="px-8 py-4 rounded-xl font-semibold text-base transition"
+              style="border: 1.5px solid rgba(255, 255, 255, 0.3); color: white"
+              onmouseover="this.style.background = 'rgba(255,255,255,0.1)'"
+              onmouseout="this.style.background = 'transparent'"
+            >
+              Talk to Sales
+            </a>
+          </div>
+          <p
+            class="mt-6 text-sm relative"
+            style="color: rgba(255, 255, 255, 0.45)"
+          >
+            No credit card required · 30-day free trial · Cancel anytime
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer style="background: #1d6db5; color: white">
+      <div
+        class="max-w-7xl mx-auto px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="mm_logo.png"
+            alt="Muffin Menu"
+            class="h-8 object-contain"
+            onerror="this.style.display = 'none'"
+          />
+          <span class="font-black text-lg"
+            >Muffin<span style="color: #f4b223">Menu</span></span
+          >
+        </div>
+        <div
+          class="flex flex-wrap justify-center gap-6 text-sm"
+          style="color: rgba(255, 255, 255, 0.6)"
+        >
+          <a href="#" class="hover:text-white transition">Features</a>
+          <a href="#" class="hover:text-white transition">Pricing</a>
+          <a href="#" class="hover:text-white transition">Customers</a>
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+        <div class="text-sm" style="color: rgba(255, 255, 255, 0.3)">
+          © 2026 Muffin Menu.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
