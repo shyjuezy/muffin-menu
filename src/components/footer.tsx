@@ -45,8 +45,14 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-          © 2026 Muffin Menu.
+        <div
+          className="text-sm text-center md:text-right space-y-1"
+          style={{ color: "rgba(255,255,255,0.5)" }}
+        >
+          <p>Muffin Menu is a product of Add4x Inc.</p>
+          <p style={{ color: "rgba(255,255,255,0.3)" }}>
+            © 2026 Add4x Inc.
+          </p>
         </div>
       </div>
     </footer>
