@@ -42,6 +42,11 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Decorative elements (the mascot glow, the tilted product card) intentionally
+     bleed a few px past the layout edge. `overflow-x: clip` removes the resulting
+     horizontal scroll without creating a scroll container — so the sticky nav
+     keeps working (unlike `overflow: hidden`). */
+  overflow-x: clip;
 }
 
 .mm-wrap {
