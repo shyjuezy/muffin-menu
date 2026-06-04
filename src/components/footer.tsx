@@ -1,21 +1,21 @@
 import Link from "next/link";
 
 const PRODUCT_LINKS = [
-  { label: "Kitchen Display", href: "#product" },
-  { label: "Point of Sale", href: "#product" },
-  { label: "Menu Builder", href: "#product" },
-  { label: "Analytics", href: "#product" },
+  { label: "Kitchen Display", href: "/#product" },
+  { label: "Point of Sale", href: "/#product" },
+  { label: "Menu Builder", href: "/#product" },
+  { label: "Analytics", href: "/#product" },
 ];
 
 const COMPANY_LINKS = [
   { label: "About", href: "#" },
   { label: "Careers", href: "#" },
-  { label: "Contact", href: "mailto:hello@add4x.com" },
+  { label: "Contact", href: "mailto:sales@muffinmenu.com" },
 ];
 
 const START_LINKS = [
-  { label: "Request a demo", href: "#demo" },
-  { label: "Contact sales", href: "mailto:hello@add4x.com" },
+  { label: "Request a demo", href: "/demo" },
+  { label: "Contact sales", href: "mailto:sales@muffinmenu.com" },
 ];
 
 export function Footer() {

@@ -70,7 +70,7 @@ export function Hero() {
               <b>one platform that talks to itself.</b>
             </p>
             <div className="mm-cta-row">
-              <Link href="#demo" className="mm-btn-primary mm-btn-lg">
+              <Link href="/demo" className="mm-btn-primary mm-btn-lg">
                 Request a demo →
               </Link>
               <Link href="#product" className="mm-btn-ghost mm-btn-lg">

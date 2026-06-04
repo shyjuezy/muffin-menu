@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Product", href: "#product" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Resources", href: "#resources" },
+  { label: "Product", href: "/#product" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Resources", href: "/#resources" },
 ];
 
 export function Nav() {
@@ -21,7 +21,7 @@ export function Nav() {
               </Link>
             ))}
           </div>
-          <Link href="#demo" className="mm-btn-primary mm-nav-cta">
+          <Link href="/demo" className="mm-btn-primary mm-nav-cta">
             Request a demo
           </Link>
         </nav>
