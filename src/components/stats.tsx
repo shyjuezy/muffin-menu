@@ -1,27 +1,21 @@
 const STATS = [
-  { value: "500+", label: "Restaurants Active", color: "#1D6DB5" },
-  { value: "50K+", label: "Orders Per Day", color: "#1D6DB5" },
-  { value: "99.9%", label: "Platform Uptime", color: "#1D6DB5" },
-  { value: "4.9★", label: "Average Rating", color: "#F4B223" },
+  { value: "500+", label: "Restaurants active", accent: false },
+  { value: "50K+", label: "Orders per day", accent: false },
+  { value: "99.9%", label: "Platform uptime", accent: false },
+  { value: "4.9★", label: "Average rating", accent: true },
 ];
 
 export function Stats() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-8 text-center">
-        <p className="text-xs font-bold uppercase tracking-widest mb-12 text-gray-400">
-          By the numbers
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="mm-statsband">
+      <div className="mm-wrap">
+        <div className="mm-statgrid">
           {STATS.map((stat) => (
             <div key={stat.label}>
-              <div
-                className="text-5xl font-black mb-2"
-                style={{ color: stat.color }}
-              >
+              <div className={`mm-v${stat.accent ? " mm-am" : ""}`}>
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-500">{stat.label}</div>
+              <div className="mm-l">{stat.label}</div>
             </div>
           ))}
         </div>
