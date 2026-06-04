@@ -2,9 +2,6 @@ interface Feature {
   title: string;
   description: string;
   detail: string;
-  iconColor: string;
-  iconBg: string;
-  detailColor: string;
   icon: React.ReactNode;
 }
 
@@ -12,11 +9,8 @@ const FEATURES: Feature[] = [
   {
     title: "Kitchen Display (KDS)",
     description:
-      "Live order tickets with timers, bump tracking, and priority alerts. Works on any screen — tablet, monitor, or custom display.",
-    detail: "→ Ticket management, station routing, bump reports",
-    iconBg: "#EBF5FF",
-    iconColor: "#1D6DB5",
-    detailColor: "#1D6DB5",
+      "Live order tickets with timers, bump tracking, and priority alerts. Works on any tablet, monitor, or custom display.",
+    detail: "Ticket management, station routing →",
     icon: (
       <svg
         width="22"
@@ -35,11 +29,8 @@ const FEATURES: Feature[] = [
   {
     title: "Point of Sale (POS)",
     description:
-      "Fast order entry with modifiers, split checks, and discount support. Accepts all payment methods with built-in tipping.",
-    detail: "→ Dine-in, takeout & delivery modes",
-    iconBg: "#FFFBEB",
-    iconColor: "#D97706",
-    detailColor: "#D97706",
+      "Fast order entry with modifiers, split checks, and discounts. Accepts every payment method with built-in tipping.",
+    detail: "Dine-in, takeout & delivery →",
     icon: (
       <svg
         width="22"
@@ -57,11 +48,8 @@ const FEATURES: Feature[] = [
   {
     title: "Analytics Dashboard",
     description:
-      "Real-time sales, item performance, hourly breakdowns, and staff metrics. Export to CSV or connect to your accounting tool.",
-    detail: "→ Daily reports, trends, custom date ranges",
-    iconBg: "#F0FDF4",
-    iconColor: "#16a34a",
-    detailColor: "#16a34a",
+      "Real-time sales, item performance, hourly breakdowns, and staff metrics. Export to CSV or your accounting tool.",
+    detail: "Live sales & item reports →",
     icon: (
       <svg
         width="22"
@@ -80,11 +68,8 @@ const FEATURES: Feature[] = [
   {
     title: "Menu Builder",
     description:
-      "Drag-and-drop editor with categories, modifiers, photos, and availability toggles. Update everything in one place — syncs instantly.",
-    detail: "→ Syncs to KDS, POS & online ordering",
-    iconBg: "#FFF1F2",
-    iconColor: "#e11d48",
-    detailColor: "#e11d48",
+      "Update items, prices, modifiers, and photos once — they sync instantly to POS, KDS, and online ordering.",
+    detail: "Real-time menu sync →",
     icon: (
       <svg
         width="22"
@@ -94,21 +79,17 @@ const FEATURES: Feature[] = [
         stroke="currentColor"
         strokeWidth="2"
       >
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="12" y1="18" x2="12" y2="12" />
-        <line x1="9" y1="15" x2="15" y2="15" />
+        <path d="M4 4h16v4H4z" />
+        <path d="M4 12h16" />
+        <path d="M4 18h10" />
       </svg>
     ),
   },
   {
     title: "Multi-location",
     description:
-      "Centralized control for all your branches. Standardize menus, compare location performance, and push updates chain-wide.",
-    detail: "→ Per-location menus, consolidated reporting",
-    iconBg: "#F5F3FF",
-    iconColor: "#7c3aed",
-    detailColor: "#7c3aed",
+      "Run one café or fifty. Shared menus, per-location overrides, and a roll-up view of every kitchen from anywhere.",
+    detail: "Brand → location hierarchy →",
     icon: (
       <svg
         width="22"
@@ -118,19 +99,17 @@ const FEATURES: Feature[] = [
         stroke="currentColor"
         strokeWidth="2"
       >
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-        <circle cx="12" cy="10" r="3" />
+        <path d="M3 21h18" />
+        <path d="M5 21V8l7-5 7 5v13" />
+        <path d="M9 21v-6h6v6" />
       </svg>
     ),
   },
   {
     title: "Staff & Roles",
     description:
-      "Role-based access for managers, cashiers, and kitchen staff. Clock-in tracking, shift notes, and full audit logs included.",
-    detail: "→ PIN login, permissions, activity history",
-    iconBg: "#EBF5FF",
-    iconColor: "#1D6DB5",
-    detailColor: "#1D6DB5",
+      "Granular permissions from owner to line cook. Everyone sees exactly what they need — nothing they don't.",
+    detail: "5-tier role-based access →",
     icon: (
       <svg
         width="22"
@@ -140,67 +119,33 @@ const FEATURES: Feature[] = [
         stroke="currentColor"
         strokeWidth="2"
       >
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
       </svg>
     ),
   },
 ];
 
-function FeatureCard({ feature }: { feature: Feature }) {
-  return (
-    <div
-      className="feature-card rounded-2xl p-7"
-      style={{
-        background: "#F8FAFE",
-        border: "1px solid #e5e7eb",
-      }}
-    >
-      <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-        style={{ background: feature.iconBg, color: feature.iconColor }}
-      >
-        {feature.icon}
-      </div>
-      <h3 className="font-bold text-lg mb-2 text-gray-900">{feature.title}</h3>
-      <p className="text-sm leading-relaxed mb-4 text-gray-500">
-        {feature.description}
-      </p>
-      <div
-        className="text-xs font-semibold"
-        style={{ color: feature.detailColor }}
-      >
-        {feature.detail}
-      </div>
-    </div>
-  );
-}
-
 export function Features() {
   return (
-    <section id="features" className="py-24" style={{ background: "#F8FAFE" }}>
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <p
-            className="text-xs font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#1D6DB5" }}
-          >
-            Platform
-          </p>
-          <h2 className="text-4xl font-black mb-4 text-gray-900">
-            Designed for Every Station
-          </h2>
-          <p className="text-lg max-w-xl mx-auto text-gray-500">
-            Counter, kitchen, back office — all connected. One login for your
-            whole team.
-          </p>
-        </div>
+    <section className="mm-sec" id="product">
+      <div className="mm-wrap">
+        <span className="mm-kicker">One platform, every station</span>
+        <h2>Everything your restaurant runs on, in one place.</h2>
+        <p className="mm-lede">
+          Front of house, back of house, and the office — connected. No more
+          stitching together five tools that don&apos;t talk to each other.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="mm-grid">
           {FEATURES.map((feature) => (
-            <FeatureCard key={feature.title} feature={feature} />
+            <div className="mm-fcard" key={feature.title}>
+              <div className="mm-ficon">{feature.icon}</div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+              <span className="mm-more">{feature.detail}</span>
+            </div>
           ))}
         </div>
       </div>

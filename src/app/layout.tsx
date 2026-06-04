@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muffin Menu — Restaurant Management Platform",
+  title: "Muffin Menu — Run the whole restaurant from one screen",
   description:
-    "One platform to manage your kitchen display, point of sale, menu, and analytics. Built for restaurants that refuse to compromise.",
+    "POS, kitchen display, menus, online ordering, and reporting — one platform that talks to itself. Built for restaurant operators.",
 };
 
 export default function RootLayout({
