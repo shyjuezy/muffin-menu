@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muffin Menu — Run the whole restaurant from one screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --bg2: #15161b;
+        --ink: #f5f4f2;
+        --muted: #9a9ca6;
+        --muted2: #74767f;
+        --amber: #f4a93c;
+        --amber-soft: #ffc76b;
+        --amber-deep: #e8852a;
+        --green: #34d27b;
+        --line: rgba(255, 255, 255, 0.08);
+        --line2: rgba(255, 255, 255, 0.06);
+        --card: rgba(255, 255, 255, 0.035);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+        overflow-x: hidden;
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      section {
+        position: relative;
+      }
+
+      /* ---------- NAV ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(14, 15, 18, 0.72);
+        border-bottom: 1px solid var(--line2);
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        font-size: 19px;
+        letter-spacing: -0.02em;
+      }
+      .brand .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(150deg, var(--amber), var(--amber-deep));
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        box-shadow: 0 6px 20px rgba(244, 169, 60, 0.35);
+      }
+      .navlinks {
+        display: flex;
+        gap: 34px;
+        font-size: 15px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .navlinks a:hover {
+        color: var(--ink);
+      }
+      .nav-cta {
+        background: var(--amber);
+        color: #1a1206;
+        border: none;
+        font-weight: 700;
+        font-size: 14.5px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(244, 169, 60, 0.28);
+        transition: transform 0.15s;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+      }
+
+      /* ---------- HERO ---------- */
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            900px 520px at 78% 30%,
+            rgba(244, 169, 60, 0.16),
+            transparent 60%
+          ),
+          radial-gradient(
+            700px 500px at 10% 0%,
+            rgba(255, 255, 255, 0.05),
+            transparent 55%
+          );
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 48px;
+        align-items: center;
+        padding: 70px 0 44px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--amber-soft);
+        background: rgba(244, 169, 60, 0.1);
+        border: 1px solid rgba(244, 169, 60, 0.22);
+        padding: 7px 14px;
+        border-radius: 100px;
+        margin-bottom: 26px;
+      }
+      .eyebrow .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--amber);
+        box-shadow: 0 0 0 4px rgba(244, 169, 60, 0.18);
+      }
+      h1 {
+        font-size: 62px;
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+        font-weight: 800;
+      }
+      .accent {
+        background: linear-gradient(92deg, var(--amber-soft), var(--amber));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .sub {
+        margin-top: 24px;
+        font-size: 18.5px;
+        line-height: 1.55;
+        color: var(--muted);
+        max-width: 480px;
+      }
+      .sub b {
+        color: #d8d7d3;
+        font-weight: 600;
+      }
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        margin-top: 34px;
+      }
+      .btn-primary {
+        background: var(--amber);
+        color: #1a1206;
+        border: none;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 15px 26px;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 12px 30px rgba(244, 169, 60, 0.3);
+        transition: transform 0.15s;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        font-weight: 600;
+        font-size: 16px;
+        padding: 15px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: border-color 0.15s;
+      }
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      /* product card */
+      .stage {
+        position: relative;
+        perspective: 1800px;
+      }
+      .device {
+        position: relative;
+        transform: rotateY(-16deg) rotateX(5deg) rotate(0.5deg);
+        transform-style: preserve-3d;
+        border-radius: 18px;
+        background: linear-gradient(160deg, #1c1e25, #121319);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow:
+          -30px 40px 90px -30px rgba(0, 0, 0, 0.85),
+          0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+        padding: 18px;
+      }
+      .device::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        background: linear-gradient(
+          150deg,
+          rgba(244, 169, 60, 0.1),
+          transparent 45%
+        );
+        pointer-events: none;
+      }
+      .scr-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .scr-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #cfcfd6;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .scr-title .live {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--green);
+        background: rgba(52, 210, 123, 0.12);
+        padding: 3px 8px;
+        border-radius: 6px;
+        letter-spacing: 0.06em;
+      }
+      .dots {
+        display: flex;
+        gap: 6px;
+      }
+      .dots i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        display: block;
+      }
+      .tiles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+      }
+      .tile {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 13px;
+      }
+      .tile .t {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 9px;
+      }
+      .tile .tno {
+        font-weight: 800;
+        font-size: 15px;
+      }
+      .badge {
+        font-size: 10.5px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: 6px;
+      }
+      .b-ready {
+        background: rgba(52, 210, 123, 0.14);
+        color: var(--green);
+      }
+      .b-cook {
+        background: rgba(244, 169, 60, 0.14);
+        color: var(--amber-soft);
+      }
+      .b-new {
+        background: rgba(255, 255, 255, 0.08);
+        color: #b9bac2;
+      }
+      .tile .li {
+        font-size: 11.5px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .tile .li b {
+        color: #d8d7d3;
+        font-weight: 600;
+      }
+      .statbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 13px;
+        padding-top: 13px;
+        border-top: 1px solid var(--line);
+      }
+      .statbar .s {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .statbar .s b {
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 800;
+        display: block;
+        letter-spacing: -0.02em;
+      }
+      .statbar .s .g {
+        color: var(--green);
+      }
+      .mascot {
+        position: absolute;
+        right: -30px;
+        bottom: -46px;
+        font-size: 58px;
+        filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.5));
+        transform: rotate(8deg);
+      }
+      .mascot .blob {
+        position: absolute;
+        inset: -18px;
+        background: radial-gradient(
+          circle,
+          rgba(244, 169, 60, 0.35),
+          transparent 65%
+        );
+        z-index: -1;
+        border-radius: 50%;
+      }
+
+      /* ---------- TRUST ---------- */
+      .trust {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 26px 0 64px;
+        border-top: 1px solid var(--line);
+        margin-top: 26px;
+      }
+      .trust .lbl {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .logos {
+        display: flex;
+        gap: 34px;
+        opacity: 0.55;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .logos .lg {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-weight: 800;
+        font-size: 15px;
+        color: #cfcfd6;
+        letter-spacing: -0.02em;
+      }
+      .logos .lg .m {
+        width: 16px;
+        height: 16px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ---------- SECTION HEADERS ---------- */
+      .sec {
+        padding: 96px 0;
+      }
+      .kicker {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--amber);
+      }
+      .sec h2 {
+        font-size: 44px;
+        line-height: 1.06;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        margin-top: 14px;
+        max-width: 640px;
+      }
+      .sec .lede {
+        font-size: 18px;
+        color: var(--muted);
+        margin-top: 18px;
+        max-width: 560px;
+        line-height: 1.6;
+      }
+
+      /* ---------- FEATURES GRID ---------- */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 54px;
+      }
+      .fcard {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 26px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          background 0.2s;
+      }
+      .fcard:hover {
+        border-color: rgba(244, 169, 60, 0.32);
+        transform: translateY(-3px);
+        background: rgba(244, 169, 60, 0.05);
+      }
+      .ficon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: rgba(244, 169, 60, 0.12);
+        border: 1px solid rgba(244, 169, 60, 0.22);
+        display: grid;
+        place-items: center;
+        color: var(--amber-soft);
+        margin-bottom: 18px;
+      }
+      .fcard h3 {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .fcard p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin-top: 9px;
+        line-height: 1.6;
+      }
+      .fcard .more {
+        font-size: 13px;
+        color: var(--amber);
+        font-weight: 600;
+        margin-top: 16px;
+        display: inline-block;
+      }
+
+      /* ---------- SPOTLIGHT ---------- */
+      .spot {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .spot-panel {
+        background: linear-gradient(160deg, #1c1e25, #121319);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8);
+      }
+      .bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 14px;
+        height: 150px;
+        padding: 8px 4px 0;
+      }
+      .bars .bar {
+        flex: 1;
+        border-radius: 7px 7px 3px 3px;
+        background: linear-gradient(
+          180deg,
+          var(--amber),
+          rgba(244, 169, 60, 0.25)
+        );
+      }
+      .bars .bar.dim {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .barx {
+        display: flex;
+        gap: 14px;
+        margin-top: 10px;
+      }
+      .barx span {
+        flex: 1;
+        text-align: center;
+        font-size: 11px;
+        color: var(--muted2);
+      }
+      .minirow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 2px;
+        border-top: 1px solid var(--line);
+      }
+      .minirow:first-of-type {
+        border-top: 1px solid var(--line);
+        margin-top: 18px;
+      }
+      .minirow .name {
+        font-size: 13.5px;
+        color: #d8d7d3;
+      }
+      .minirow .val {
+        font-weight: 800;
+        font-size: 14px;
+      }
+      .minirow .up {
+        font-size: 11.5px;
+        color: var(--green);
+        font-weight: 700;
+        margin-left: 8px;
+      }
+      .checklist {
+        list-style: none;
+        margin-top: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .checklist li {
+        display: flex;
+        gap: 12px;
+        font-size: 15.5px;
+        color: #cfcfd6;
+        line-height: 1.5;
+      }
+      .checklist .ck {
+        flex: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        background: rgba(52, 210, 123, 0.14);
+        color: var(--green);
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 900;
+        margin-top: 1px;
+      }
+
+      /* ---------- STATS BAND ---------- */
+      .statsband {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.015);
+      }
+      .statgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding: 64px 0;
+        text-align: center;
+      }
+      .statgrid .v {
+        font-size: 50px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+      }
+      .statgrid .v.am {
+        color: var(--amber-soft);
+      }
+      .statgrid .l {
+        font-size: 14px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      /* ---------- TESTIMONIAL ---------- */
+      .quote {
+        max-width: 860px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .quote .mark {
+        font-size: 64px;
+        color: rgba(244, 169, 60, 0.4);
+        font-weight: 900;
+        line-height: 0.5;
+      }
+      .quote p {
+        font-size: 30px;
+        line-height: 1.32;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-top: 26px;
+      }
+      .quote .who {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+      }
+      .quote .av {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: linear-gradient(150deg, var(--amber), var(--amber-deep));
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+      .quote .who .nm {
+        text-align: left;
+      }
+      .quote .who .nm b {
+        display: block;
+        font-size: 15px;
+      }
+      .quote .who .nm span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ---------- FINAL CTA ---------- */
+      .cta-final {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        background: linear-gradient(150deg, #1b1408, #121319 60%);
+        border: 1px solid rgba(244, 169, 60, 0.2);
+        padding: 72px 48px;
+        text-align: center;
+      }
+      .cta-final::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          700px 360px at 50% 0%,
+          rgba(244, 169, 60, 0.22),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .cta-final h2 {
+        font-size: 46px;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        position: relative;
+      }
+      .cta-final p {
+        font-size: 18px;
+        color: var(--muted);
+        margin-top: 16px;
+        position: relative;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-final .cta-row {
+        justify-content: center;
+        position: relative;
+      }
+      .cta-final .fineprint {
+        font-size: 13.5px;
+        color: var(--muted2);
+        margin-top: 22px;
+        position: relative;
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 54px 0 40px;
+        margin-top: 30px;
+      }
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .foot .col h4 {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted2);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .foot .col a {
+        display: block;
+        font-size: 14.5px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .foot .col a:hover {
+        color: var(--ink);
+      }
+      .foot-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        font-size: 13.5px;
+        color: var(--muted2);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .foot-bottom a {
+        color: var(--muted);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 900px) {
+        .wrap {
+          padding: 0 22px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 60px;
+          padding: 50px 0 30px;
+        }
+        h1 {
+          font-size: 46px;
+        }
+        .device {
+          transform: none;
+          box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
+        }
+        .stage {
+          margin-top: 10px;
+        }
+        .mascot {
+          right: -6px;
+          bottom: -34px;
+          font-size: 46px;
+        }
+        .navlinks {
+          display: none;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .sec {
+          padding: 64px 0;
+        }
+        .sec h2 {
+          font-size: 32px;
+        }
+        .spot {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .statgrid {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px 24px;
+        }
+        .statgrid .v {
+          font-size: 40px;
+        }
+        .quote p {
+          font-size: 22px;
+        }
+        .cta-final {
+          padding: 48px 24px;
+        }
+        .cta-final h2 {
+          font-size: 32px;
+        }
+        .cta-row {
+          flex-direction: column;
+        }
+        .btn-primary,
+        .btn-ghost {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <header>
+      <div class="wrap">
+        <nav>
+          <a href="#" class="brand"><span class="logo">🧁</span> Muffin Menu</a>
+          <div class="navlinks">
+            <a href="#product">Product</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#resources">Resources</a>
+          </div>
+          <button class="nav-cta">Request a demo</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section>
+      <div class="hero-bg"></div>
+      <div class="wrap">
+        <div class="hero">
+          <div>
+            <span class="eyebrow"
+              ><span class="dot"></span> Built for restaurant operators</span
+            >
+            <h1>
+              Run the whole<br />restaurant.<br /><span class="accent"
+                >From one screen.</span
+              >
+            </h1>
+            <p class="sub">
+              POS, kitchen display, menus, online ordering, and reporting —
+              <b>one platform that talks to itself.</b>
+            </p>
+            <div class="cta-row">
+              <button class="btn-primary">Request a demo →</button>
+              <button class="btn-ghost">See it live</button>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="device">
+              <div class="scr-top">
+                <div class="scr-title">
+                  🍳 Kitchen Display <span class="live">● LIVE</span>
+                </div>
+                <div class="dots"><i></i><i></i><i></i></div>
+              </div>
+              <div class="tiles">
+                <div class="tile">
+                  <div class="t">
+                    <span class="tno">Table 12</span
+                    ><span class="badge b-ready">Ready</span>
+                  </div>
+                  <div class="li">
+                    <b>2×</b> Brisket bowl<br /><b>1×</b> Mac &amp; cheese
+                  </div>
+                </div>
+                <div class="tile">
+                  <div class="t">
+                    <span class="tno">Online · #4471</span
+                    ><span class="badge b-cook">Cooking</span>
+                  </div>
+                  <div class="li">
+                    <b>1×</b> Double burger<br /><b>1×</b> Fries · no salt
+                  </div>
+                </div>
+                <div class="tile">
+                  <div class="t">
+                    <span class="tno">Table 07</span
+                    ><span class="badge b-cook">Cooking</span>
+                  </div>
+                  <div class="li">
+                    <b>3×</b> Street tacos<br /><b>2×</b> Horchata
+                  </div>
+                </div>
+                <div class="tile">
+                  <div class="t">
+                    <span class="tno">Pickup · #4472</span
+                    ><span class="badge b-new">New</span>
+                  </div>
+                  <div class="li">
+                    <b>1×</b> Caesar salad<br /><b>1×</b> Lemonade
+                  </div>
+                </div>
+              </div>
+              <div class="statbar">
+                <div class="s">Orders today<b>126</b></div>
+                <div class="s">Avg. ticket<b>7.4 min</b></div>
+                <div class="s">On time<b class="g">98%</b></div>
+              </div>
+            </div>
+            <div class="mascot"><span class="blob"></span>🧁</div>
+          </div>
+        </div>
+
+        <!-- TRUST -->
+        <div class="trust">
+          <span class="lbl">Trusted by 500+ kitchens</span>
+          <div class="logos">
+            <span class="lg"><span class="m"></span>Brisket Co</span>
+            <span class="lg"><span class="m"></span>Nori</span>
+            <span class="lg"><span class="m"></span>Pamela's</span>
+            <span class="lg"><span class="m"></span>Ember</span>
+            <span class="lg"><span class="m"></span>Verde</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="sec" id="product">
+      <div class="wrap">
+        <span class="kicker">One platform, every station</span>
+        <h2>Everything your restaurant runs on, in one place.</h2>
+        <p class="lede">
+          Front of house, back of house, and the office — connected. No more
+          stitching together five tools that don't talk to each other.
+        </p>
+
+        <div class="grid">
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3>Kitchen Display (KDS)</h3>
+            <p>
+              Live order tickets with timers, bump tracking, and priority
+              alerts. Works on any tablet, monitor, or custom display.
+            </p>
+            <span class="more">Ticket management, station routing →</span>
+          </div>
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="1" y="4" width="22" height="16" rx="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+            </div>
+            <h3>Point of Sale (POS)</h3>
+            <p>
+              Fast order entry with modifiers, split checks, and discounts.
+              Accepts every payment method with built-in tipping.
+            </p>
+            <span class="more">Dine-in, takeout &amp; delivery →</span>
+          </div>
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+            </div>
+            <h3>Analytics Dashboard</h3>
+            <p>
+              Real-time sales, item performance, hourly breakdowns, and staff
+              metrics. Export to CSV or your accounting tool.
+            </p>
+            <span class="more">Live sales &amp; item reports →</span>
+          </div>
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 4h16v4H4z" />
+                <path d="M4 12h16" />
+                <path d="M4 18h10" />
+              </svg>
+            </div>
+            <h3>Menu Builder</h3>
+            <p>
+              Update items, prices, modifiers, and photos once — they sync
+              instantly to POS, KDS, and online ordering.
+            </p>
+            <span class="more">Real-time menu sync →</span>
+          </div>
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 21h18" />
+                <path d="M5 21V8l7-5 7 5v13" />
+                <path d="M9 21v-6h6v6" />
+              </svg>
+            </div>
+            <h3>Multi-location</h3>
+            <p>
+              Run one café or fifty. Shared menus, per-location overrides, and a
+              roll-up view of every kitchen from anywhere.
+            </p>
+            <span class="more">Brand → location hierarchy →</span>
+          </div>
+          <div class="fcard">
+            <div class="ficon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              </svg>
+            </div>
+            <h3>Staff &amp; Roles</h3>
+            <p>
+              Granular permissions from owner to line cook. Everyone sees
+              exactly what they need — nothing they don't.
+            </p>
+            <span class="more">5-tier role-based access →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPOTLIGHT -->
+    <section class="sec" id="solutions">
+      <div class="wrap">
+        <div class="spot">
+          <div>
+            <span class="kicker">One source of truth</span>
+            <h2>The numbers add up — automatically.</h2>
+            <p class="lede">
+              Every order from every channel flows into one ledger. Close out
+              the night and your reporting is already done.
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="ck">✓</span> Sales, labor, and item data in real
+                time — no spreadsheets
+              </li>
+              <li>
+                <span class="ck">✓</span> Online &amp; dine-in orders land on
+                the same KDS, in order
+              </li>
+              <li>
+                <span class="ck">✓</span> Menu changes propagate everywhere the
+                moment you save
+              </li>
+              <li>
+                <span class="ck">✓</span> Roll-up reporting across every
+                location you operate
+              </li>
+            </ul>
+          </div>
+          <div class="spot-panel">
+            <div class="scr-top">
+              <div class="scr-title">📊 This week · All locations</div>
+              <div class="dots"><i></i><i></i><i></i></div>
+            </div>
+            <div class="bars">
+              <div class="bar dim" style="height: 46%"></div>
+              <div class="bar dim" style="height: 62%"></div>
+              <div class="bar dim" style="height: 54%"></div>
+              <div class="bar" style="height: 78%"></div>
+              <div class="bar" style="height: 92%"></div>
+              <div class="bar dim" style="height: 70%"></div>
+              <div class="bar dim" style="height: 58%"></div>
+            </div>
+            <div class="barx">
+              <span>M</span><span>T</span><span>W</span><span>T</span
+              ><span>F</span><span>S</span><span>S</span>
+            </div>
+            <div class="minirow">
+              <span class="name">Net sales</span
+              ><span
+                ><span class="val">$48,920</span
+                ><span class="up">▲ 12%</span></span
+              >
+            </div>
+            <div class="minirow">
+              <span class="name">Avg. ticket time</span
+              ><span
+                ><span class="val">7.4 min</span
+                ><span class="up">▲ 5%</span></span
+              >
+            </div>
+            <div class="minirow">
+              <span class="name">Top item · Brisket bowl</span
+              ><span><span class="val">412 sold</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAND -->
+    <section class="statsband">
+      <div class="wrap">
+        <div class="statgrid">
+          <div>
+            <div class="v">500+</div>
+            <div class="l">Restaurants active</div>
+          </div>
+          <div>
+            <div class="v">50K+</div>
+            <div class="l">Orders per day</div>
+          </div>
+          <div>
+            <div class="v">99.9%</div>
+            <div class="l">Platform uptime</div>
+          </div>
+          <div>
+            <div class="v am">4.9★</div>
+            <div class="l">Average rating</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="quote">
+          <div class="mark">“</div>
+          <p>
+            We replaced three different systems with Muffin Menu. The kitchen
+            runs calmer, the reports write themselves, and onboarding a new
+            location takes an afternoon instead of a month.
+          </p>
+          <div class="who">
+            <div class="av">🧑‍🍳</div>
+            <div class="nm">
+              <b>Maria Delgado</b
+              ><span>Owner · Verde Taquería (6 locations)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="sec" id="resources" style="padding-top: 20px">
+      <div class="wrap">
+        <div class="cta-final">
+          <h2>
+            See Muffin Menu run <span class="accent">your</span> restaurant.
+          </h2>
+          <p>
+            Book a 20-minute walkthrough. We'll set it up around your menu and
+            your stations — no commitment.
+          </p>
+          <div class="cta-row">
+            <button class="btn-primary">Request a demo →</button>
+            <button class="btn-ghost">Contact sales</button>
+          </div>
+          <div class="fineprint">
+            Talk to a real person · Works on hardware you already own
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div class="col" style="max-width: 280px">
+            <a href="#" class="brand" style="margin-bottom: 14px"
+              ><span class="logo">🧁</span> Muffin Menu</a
+            >
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.6">
+              The restaurant operating system. POS, kitchen, menus, and
+              reporting on one platform.
+            </p>
+          </div>
+          <div class="col">
+            <h4>Product</h4>
+            <a href="#product">Kitchen Display</a>
+            <a href="#product">Point of Sale</a>
+            <a href="#product">Menu Builder</a>
+            <a href="#product">Analytics</a>
+          </div>
+          <div class="col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="col">
+            <h4>Get started</h4>
+            <a href="#resources">Request a demo</a>
+            <a href="#">Contact sales</a>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 Add4x Inc. All rights reserved.</span>
+          <span
+            >Muffin Menu is built &amp; operated by
+            <a href="#">Add4x Inc.</a></span
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
