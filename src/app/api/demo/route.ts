@@ -123,7 +123,7 @@ export async function POST(request: Request) {
   // 4. Config — fail loudly rather than silently dropping a lead.
   const apiKey = process.env.RESEND_API_KEY;
   const from =
-    process.env.DEMO_FROM ?? "Muffin Menu <notifications@send.muffinmenu.com>";
+    process.env.DEMO_FROM ?? "Muffin Menu <notifications@muffinmenu.com>";
   const notifyTo = process.env.DEMO_NOTIFY_TO ?? "sales@muffinmenu.com";
   const salesReplyTo = process.env.DEMO_REPLY_TO ?? "sales@muffinmenu.com";
   const bcc = process.env.DEMO_BCC;
