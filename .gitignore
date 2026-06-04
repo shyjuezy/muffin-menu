@@ -44,3 +44,6 @@ next-env.d.ts
 # Prototype drafts — only finalized/ is committed
 docs/prototype/*.html
 docs/prototype/*.png
+
+# Playwright MCP output (screenshots, snapshots)
+.playwright-mcp/

@@ -47,6 +47,38 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+// Email clients ignore <style>/external CSS and don't do flex/grid — so the
+// templates below use table layout + inline styles for reliable rendering.
+function emailShell(heading: string, intro: string, bodyHtml: string): string {
+  return `<div style="margin:0;padding:0;background:#f4f4f5;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+        <tr><td style="background:#0e0f12;padding:20px 28px;">
+          <span style="font-size:18px;font-weight:800;color:#ffffff;letter-spacing:-0.02em;">🧁 Muffin Menu</span>
+        </td></tr>
+        <tr><td style="height:4px;background:#f4a93c;font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:30px 28px;">
+          <h1 style="margin:0 0 6px;font-size:20px;font-weight:800;color:#15161b;letter-spacing:-0.02em;">${heading}</h1>
+          <p style="margin:0 0 22px;font-size:14px;color:#6b7280;line-height:1.5;">${intro}</p>
+          ${bodyHtml}
+        </td></tr>
+        <tr><td style="padding:18px 28px;border-top:1px solid #eef0f2;font-size:12px;color:#9aa0a6;">
+          Muffin Menu — built &amp; operated by Add4x Inc.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</div>`;
+}
+
+function detailRow(label: string, value: string): string {
+  return `<tr>
+    <td style="padding:10px 0;border-bottom:1px solid #f0f1f3;width:120px;vertical-align:top;font-size:13px;color:#9aa0a6;font-weight:600;">${label}</td>
+    <td style="padding:10px 0;border-bottom:1px solid #f0f1f3;font-size:14px;color:#15161b;">${value}</td>
+  </tr>`;
+}
+
 async function verifyTurnstile(
   token: string,
   ip: string | null,
@@ -153,17 +185,20 @@ export async function POST(request: Request) {
     : "Not specified";
 
   // Notification to the team — Reply-To is the prospect so a reply goes to them.
-  const notifyHtml = `
-    <h2>New demo request</h2>
-    <table cellpadding="6" style="font-family:system-ui,sans-serif;font-size:14px">
-      <tr><td><b>Name</b></td><td>${escapeHtml(lead.name)}</td></tr>
-      <tr><td><b>Email</b></td><td>${escapeHtml(lead.email)}</td></tr>
-      <tr><td><b>Restaurant</b></td><td>${escapeHtml(lead.restaurant) || "—"}</td></tr>
-      <tr><td><b>Locations</b></td><td>${escapeHtml(locText)}</td></tr>
-      <tr><td><b>Phone</b></td><td>${escapeHtml(lead.phone) || "—"}</td></tr>
-      <tr><td><b>Best time</b></td><td>${escapeHtml(lead.bestTime) || "—"}</td></tr>
-      <tr><td valign="top"><b>Message</b></td><td>${escapeHtml(lead.message).replace(/\n/g, "<br>") || "—"}</td></tr>
-    </table>`;
+  const detailsTable = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    ${detailRow("Name", escapeHtml(lead.name))}
+    ${detailRow("Email", `<a href="mailto:${escapeHtml(lead.email)}" style="color:#1d6db5;text-decoration:none;">${escapeHtml(lead.email)}</a>`)}
+    ${detailRow("Restaurant", escapeHtml(lead.restaurant) || "—")}
+    ${detailRow("Locations", escapeHtml(locText))}
+    ${detailRow("Phone", escapeHtml(lead.phone) || "—")}
+    ${detailRow("Best time", escapeHtml(lead.bestTime) || "—")}
+    ${detailRow("Message", escapeHtml(lead.message).replace(/\n/g, "<br>") || "—")}
+  </table>`;
+  const notifyHtml = emailShell(
+    "New demo request",
+    "A restaurant just requested a demo via muffinmenu.com.",
+    detailsTable,
+  );
   const notifyText =
     `New demo request\n\n` +
     `Name: ${lead.name}\nEmail: ${lead.email}\nRestaurant: ${lead.restaurant || "—"}\n` +
@@ -205,14 +240,14 @@ export async function POST(request: Request) {
       to: lead.email,
       replyTo: salesReplyTo,
       subject: "Thanks — we'll be in touch about your Muffin Menu demo",
-      html: `
-        <div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6">
-          <p>Hi ${escapeHtml(lead.name)},</p>
-          <p>Thanks for requesting a demo of <b>Muffin Menu</b>. We've got your details
-          and someone from our team will reach out shortly${lead.bestTime ? ` (we'll aim for ${escapeHtml(lead.bestTime)})` : ""}.</p>
-          <p>If you need us sooner, just reply to this email.</p>
-          <p>— The Muffin Menu team</p>
-        </div>`,
+      html: emailShell(
+        "Thanks — we got your request",
+        "We'll be in touch about your Muffin Menu demo.",
+        `<p style="margin:0 0 14px;font-size:15px;color:#374151;line-height:1.6;">Hi ${escapeHtml(lead.name)},</p>
+         <p style="margin:0 0 14px;font-size:15px;color:#374151;line-height:1.6;">Thanks for requesting a demo of <b>Muffin Menu</b> — POS, kitchen display, menus, online ordering, and reporting on one platform. We've got your details and someone from our team will reach out shortly${lead.bestTime ? ` (we'll aim for <b>${escapeHtml(lead.bestTime)}</b>)` : ""}.</p>
+         <p style="margin:0 0 14px;font-size:15px;color:#374151;line-height:1.6;">If you need us sooner, just reply to this email.</p>
+         <p style="margin:18px 0 0;font-size:15px;color:#374151;">— The Muffin Menu team</p>`,
+      ),
       text: `Hi ${lead.name},\n\nThanks for requesting a demo of Muffin Menu. We've got your details and someone from our team will reach out shortly${lead.bestTime ? ` (we'll aim for ${lead.bestTime})` : ""}.\n\nIf you need us sooner, just reply to this email.\n\n— The Muffin Menu team`,
     });
   } catch (err) {
