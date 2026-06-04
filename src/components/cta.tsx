@@ -1,10 +1,9 @@
-const DEMO_MAILTO =
-  "mailto:hello@add4x.com?subject=Muffin%20Menu%20demo%20request";
+import Link from "next/link";
 
 export function Cta() {
   return (
     <section className="mm-sec" id="resources" style={{ paddingTop: "20px" }}>
-      <div className="mm-wrap" id="demo">
+      <div className="mm-wrap">
         <div className="mm-cta-final">
           <h2>
             See Muffin Menu run <span className="mm-accent">your</span>{" "}
@@ -15,10 +14,13 @@ export function Cta() {
             and your stations — no commitment.
           </p>
           <div className="mm-cta-row">
-            <a href={DEMO_MAILTO} className="mm-btn-primary mm-btn-lg">
+            <Link href="/demo" className="mm-btn-primary mm-btn-lg">
               Request a demo →
-            </a>
-            <a href={DEMO_MAILTO} className="mm-btn-ghost mm-btn-lg">
+            </Link>
+            <a
+              href="mailto:sales@muffinmenu.com"
+              className="mm-btn-ghost mm-btn-lg"
+            >
               Contact sales
             </a>
           </div>
