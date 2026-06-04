@@ -1,8 +1,22 @@
+// Honest, capability-based stats for a pre-traction launch — every value is a
+// fact about the product, not a customer-count or rating we can't yet back up.
 const STATS = [
-  { value: "500+", label: "Restaurants active", accent: false },
-  { value: "50K+", label: "Orders per day", accent: false },
-  { value: "99.9%", label: "Platform uptime", accent: false },
-  { value: "4.9★", label: "Average rating", accent: true },
+  {
+    value: "5-in-1",
+    label: "POS, kitchen, menus, ordering & reporting",
+    accent: true,
+  },
+  {
+    value: "1 screen",
+    label: "Front & back of house, connected",
+    accent: false,
+  },
+  { value: "Real-time", label: "Every order, every channel", accent: false },
+  {
+    value: "Any device",
+    label: "Runs on hardware you already own",
+    accent: false,
+  },
 ];
 
 export function Stats() {

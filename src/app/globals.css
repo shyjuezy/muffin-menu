@@ -375,6 +375,16 @@ html {
   font-weight: 600;
   white-space: nowrap;
 }
+.mm-trust .mm-lbl b {
+  color: var(--mm-ink);
+  font-weight: 700;
+}
+.mm-trust-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--mm-muted2);
+}
 .mm-logos {
   display: flex;
   gap: 34px;
@@ -589,7 +599,7 @@ html {
   text-align: center;
 }
 .mm-statgrid .mm-v {
-  font-size: 50px;
+  font-size: 34px;
   font-weight: 900;
   letter-spacing: -0.03em;
 }
@@ -600,6 +610,28 @@ html {
   font-size: 14px;
   color: var(--mm-muted);
   margin-top: 6px;
+}
+
+/* ---------- EARLY ACCESS ---------- */
+.mm-early {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.mm-early h2 {
+  font-size: 40px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin: 14px auto 0;
+  max-width: none;
+}
+.mm-early p {
+  font-size: 18px;
+  color: var(--mm-muted);
+  line-height: 1.6;
+  margin: 18px auto 30px;
+  max-width: 560px;
 }
 
 /* ---------- TESTIMONIAL ---------- */
@@ -931,7 +963,7 @@ html {
     gap: 40px 24px;
   }
   .mm-statgrid .mm-v {
-    font-size: 40px;
+    font-size: 26px;
   }
   .mm-quote p {
     font-size: 22px;

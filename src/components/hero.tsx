@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-const TRUST_NAMES = ["Brisket Co", "Nori", "Pamela's", "Ember", "Verde"];
-
 interface Tile {
   no: string;
   badge: string;
@@ -131,15 +129,11 @@ export function Hero() {
         </div>
 
         <div className="mm-trust">
-          <span className="mm-lbl">Trusted by 500+ kitchens</span>
-          <div className="mm-logos">
-            {TRUST_NAMES.map((name) => (
-              <span className="mm-lg" key={name}>
-                <span className="mm-m" />
-                {name}
-              </span>
-            ))}
-          </div>
+          <span className="mm-lbl">
+            Built by the team behind <b>Add4x</b>
+          </span>
+          <span className="mm-trust-sep" />
+          <span className="mm-lbl">Now onboarding our first restaurants</span>
         </div>
       </div>
     </section>
