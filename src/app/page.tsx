@@ -1,6 +1,7 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Features } from "@/components/features";
+import { Growth } from "@/components/growth";
 import { Spotlight } from "@/components/spotlight";
 import { Stats } from "@/components/stats";
 import { EarlyAccess } from "@/components/early-access";
@@ -14,6 +15,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Features />
+        <Growth />
         <Spotlight />
         <Stats />
         <EarlyAccess />
