@@ -33,11 +33,11 @@ const ITEMS: GrowthItem[] = [
   {
     tag: "SEO-ready ordering site",
     title: "Get found on Google. Order direct.",
-    desc: "Every location gets a fast, server-rendered website where each dish is its own search-indexed page with rich structured data — so guests discover you and order straight from you.",
+    desc: "That same ordering site is built to get found: every dish gets its own page Google can find — so new customers discover you online and order straight from you, not a delivery app that takes a cut.",
     points: [
-      "Schema.org menus — prices, nutrition & dietary in search",
-      "Auto sitemaps, per-item pages & canonical tags",
-      "Server-rendered for speed and Core Web Vitals",
+      "Your dishes show up on Google — with prices, photos, and “vegan / gluten-free” labels",
+      "Searches like “best brisket near me” lead straight to your menu",
+      "Pages load instantly, so customers don’t give up and leave",
     ],
     icon: (
       <svg
