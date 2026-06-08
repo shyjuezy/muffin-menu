@@ -991,6 +991,102 @@ html {
   color: var(--mm-amber);
 }
 
+/* ---------- PRIVACY POLICY ---------- */
+.mm-policy {
+  flex: 1;
+}
+.mm-policy-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 42px;
+}
+.mm-policy-hero h1 {
+  margin-top: 18px;
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 800;
+}
+.mm-policy-hero p {
+  margin-top: 18px;
+  max-width: 720px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--mm-muted);
+}
+.mm-policy-hero .mm-policy-date {
+  font-size: 14px;
+  color: var(--mm-muted2);
+}
+.mm-policy-body {
+  padding: 16px 0 72px;
+}
+.mm-policy-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+.mm-policy-nav {
+  position: sticky;
+  top: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--mm-line);
+  border-radius: 16px;
+  background: var(--mm-card);
+}
+.mm-policy-nav a {
+  color: var(--mm-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+.mm-policy-nav a:hover {
+  color: var(--mm-ink);
+}
+.mm-policy-card {
+  border: 1px solid var(--mm-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 42px;
+}
+.mm-policy-section {
+  scroll-margin-top: 110px;
+}
+.mm-policy-section + .mm-policy-section {
+  margin-top: 44px;
+  padding-top: 38px;
+  border-top: 1px solid var(--mm-line);
+}
+.mm-policy-section h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+.mm-policy-section p,
+.mm-policy-section li {
+  color: var(--mm-muted);
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.mm-policy-section p {
+  margin-top: 16px;
+}
+.mm-policy-section ul {
+  margin-top: 18px;
+  display: grid;
+  gap: 13px;
+  padding-left: 20px;
+  list-style: disc;
+}
+.mm-policy-section li::marker {
+  color: var(--mm-amber);
+}
+.mm-policy-section a {
+  color: var(--mm-amber);
+  font-weight: 700;
+}
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .mm-wrap {
@@ -1070,5 +1166,36 @@ html {
   }
   .mm-form {
     grid-template-columns: 1fr;
+  }
+  .mm-policy-hero {
+    padding: 54px 0 30px;
+  }
+  .mm-policy-hero h1 {
+    font-size: 38px;
+  }
+  .mm-policy-hero p {
+    font-size: 16px;
+  }
+  .mm-policy-layout {
+    grid-template-columns: 1fr;
+  }
+  .mm-policy-nav {
+    position: static;
+    display: none;
+  }
+  .mm-policy-card {
+    padding: 26px;
+    border-radius: 16px;
+  }
+  .mm-policy-section + .mm-policy-section {
+    margin-top: 34px;
+    padding-top: 30px;
+  }
+  .mm-policy-section h2 {
+    font-size: 21px;
+  }
+  .mm-policy-section p,
+  .mm-policy-section li {
+    font-size: 15px;
   }
 }

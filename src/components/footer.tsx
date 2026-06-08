@@ -10,6 +10,7 @@ const PRODUCT_LINKS = [
 const COMPANY_LINKS = [
   { label: "About", href: "#" },
   { label: "Careers", href: "#" },
+  { label: "Privacy", href: "/privacy" },
   { label: "Contact", href: "mailto:sales@muffinmenu.com" },
 ];
 
