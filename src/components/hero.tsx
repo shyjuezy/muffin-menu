@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 interface Tile {
   no: string;
@@ -46,6 +51,21 @@ const TILES: Tile[] = [
   },
 ];
 
+const tilesContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.35 } },
+};
+
+const tileVariant = {
+  hidden: { opacity: 0, y: 18, scale: 0.96 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.45, ease: EASE },
+  },
+};
+
 export function Hero() {
   return (
     <section>
@@ -77,11 +97,31 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="mm-stage">
+          <motion.div
+            className="mm-stage"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE }}
+            whileHover={{ y: -6 }}
+          >
             <div className="mm-device">
               <div className="mm-scr-top">
                 <div className="mm-scr-title">
-                  🍳 Kitchen Display <span className="mm-live">● LIVE</span>
+                  🍳 Kitchen Display{" "}
+                  <span className="mm-live">
+                    <motion.span
+                      aria-hidden
+                      animate={{ opacity: [1, 0.25, 1] }}
+                      transition={{
+                        duration: 1.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      ●
+                    </motion.span>{" "}
+                    LIVE
+                  </span>
                 </div>
                 <div className="mm-dots">
                   <i />
@@ -89,9 +129,18 @@ export function Hero() {
                   <i />
                 </div>
               </div>
-              <div className="mm-tiles">
+              <motion.div
+                className="mm-tiles"
+                variants={tilesContainer}
+                initial="hidden"
+                animate="show"
+              >
                 {TILES.map((tile) => (
-                  <div className="mm-tile" key={tile.no}>
+                  <motion.div
+                    className="mm-tile"
+                    key={tile.no}
+                    variants={tileVariant}
+                  >
                     <div className="mm-tile-t">
                       <span className="mm-tno">{tile.no}</span>
                       <span className={`mm-badge ${tile.badgeClass}`}>
@@ -106,10 +155,15 @@ export function Hero() {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-              <div className="mm-statbar">
+              </motion.div>
+              <motion.div
+                className="mm-statbar"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE, delay: 0.95 }}
+              >
                 <div className="mm-s">
                   Orders today<b>126</b>
                 </div>
@@ -119,13 +173,18 @@ export function Hero() {
                 <div className="mm-s">
                   On time<b className="mm-g">98%</b>
                 </div>
-              </div>
+              </motion.div>
             </div>
-            <div className="mm-mascot">
+            <motion.div
+              className="mm-mascot"
+              initial={{ rotate: 8 }}
+              animate={{ y: [0, -9, 0], rotate: [8, 11, 8] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               <span className="mm-blob" />
               🧁
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         <div className="mm-trust">
