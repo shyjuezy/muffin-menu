@@ -1,5 +1,6 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
+import { OrderJourney } from "@/components/order-journey";
 import { Features } from "@/components/features";
 import { TemplateGallery } from "@/components/template-gallery";
 import { Promotions } from "@/components/promotions";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Nav />
       <main>
         <Hero />
+        <OrderJourney />
         <Features />
         <TemplateGallery />
         <Promotions />

@@ -176,6 +176,22 @@ export function Hero() {
               </motion.div>
             </div>
             <motion.div
+              className="mm-chip mm-chip--a"
+              initial={{ opacity: 0, y: 10, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.15, duration: 0.5, ease: EASE }}
+            >
+              <span className="mm-chip-dot" /> Online order just landed
+            </motion.div>
+            <motion.div
+              className="mm-chip mm-chip--b"
+              initial={{ opacity: 0, y: 10, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.45, duration: 0.5, ease: EASE }}
+            >
+              <span className="mm-chip-ck">✓</span> Bumped in 6:42
+            </motion.div>
+            <motion.div
               className="mm-mascot"
               initial={{ rotate: 8 }}
               animate={{ y: [0, -9, 0], rotate: [8, 11, 8] }}
