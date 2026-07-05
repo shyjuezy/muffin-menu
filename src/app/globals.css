@@ -488,6 +488,202 @@ html {
   display: inline-block;
 }
 
+/* ---------- ORDER JOURNEY ---------- */
+.mm-oj {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 54px;
+}
+.mm-oj-rail {
+  display: flex;
+  flex-direction: column;
+}
+.mm-oj-step {
+  position: relative;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--mm-line);
+  padding: 18px 0 18px 24px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+.mm-oj-step:focus-visible {
+  outline: 2px solid var(--mm-amber);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+.mm-oj-prog {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  background: var(--mm-amber);
+}
+.mm-oj-num {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--mm-muted2);
+  transition: color 0.2s;
+}
+.mm-oj-step h3 {
+  font-size: 18.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 6px;
+  color: var(--mm-muted);
+  transition: color 0.2s;
+}
+.mm-oj-step p {
+  font-size: 14.5px;
+  color: var(--mm-muted2);
+  line-height: 1.6;
+  margin-top: 7px;
+  max-width: 420px;
+  transition: color 0.2s;
+}
+.mm-oj-step:hover h3 {
+  color: var(--mm-ink);
+}
+.mm-oj-step--on .mm-oj-num {
+  color: var(--mm-amber);
+}
+.mm-oj-step--on h3 {
+  color: var(--mm-ink);
+}
+.mm-oj-step--on p {
+  color: var(--mm-muted);
+}
+.mm-oj-stage {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+}
+.mm-oj-panel {
+  width: 100%;
+}
+.mm-oj-shop-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 4px 13px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.mm-oj-shop-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mm-oj-shop-meta b {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1c1a17;
+}
+.mm-oj-shop-meta span {
+  font-size: 11.5px;
+  color: #8a8378;
+}
+.mm-oj-shop-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c2691a;
+  background: rgba(232, 133, 42, 0.12);
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+.mm-oj-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 4px 2px;
+  font-weight: 800;
+  font-size: 15.5px;
+  color: #1c1a17;
+}
+.mm-oj-place {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14.5px;
+  padding: 12px;
+}
+.mm-oj-main {
+  grid-column: 1 / -1;
+}
+.mm-oj-hot {
+  border-color: rgba(244, 169, 60, 0.45);
+  background: rgba(244, 169, 60, 0.07);
+}
+.mm-oj-dim {
+  opacity: 0.55;
+}
+.mm-oj-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--mm-line);
+  font-size: 11.5px;
+  color: var(--mm-muted);
+}
+.mm-oj-timer {
+  font-weight: 800;
+  color: var(--mm-amber-soft);
+  font-variant-numeric: tabular-nums;
+}
+.mm-oj-bumped {
+  font-weight: 800;
+  color: var(--mm-green);
+}
+.mm-oj-bars {
+  height: 110px;
+}
+
+/* ---------- HERO CALLOUT CHIPS ---------- */
+.mm-chip {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e7e6e2;
+  background: rgba(20, 21, 26, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--mm-line);
+  border-radius: 100px;
+  padding: 8px 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+.mm-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mm-amber);
+  box-shadow: 0 0 0 4px rgba(244, 169, 60, 0.16);
+}
+.mm-chip-ck {
+  color: var(--mm-green);
+  font-weight: 800;
+}
+.mm-chip--a {
+  top: -12px;
+  left: -26px;
+}
+.mm-chip--b {
+  right: -24px;
+  bottom: 84px;
+}
+
 /* ---------- GROWTH (AI + SEO highlight) ---------- */
 .mm-growth {
   display: grid;
@@ -1394,6 +1590,16 @@ html {
   }
   .mm-grid {
     grid-template-columns: 1fr;
+  }
+  .mm-oj {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .mm-oj-stage {
+    min-height: 0;
+  }
+  .mm-chip {
+    display: none;
   }
   .mm-growth {
     grid-template-columns: 1fr;
