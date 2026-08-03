@@ -1283,6 +1283,49 @@ html {
   color: var(--mm-amber);
   font-weight: 700;
 }
+.mm-policy-evidence {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid var(--mm-line);
+  border-radius: 14px;
+  background: var(--mm-card);
+}
+.mm-policy-evidence div {
+  display: grid;
+  gap: 5px;
+}
+.mm-policy-evidence dt {
+  color: var(--mm-muted2);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.mm-policy-evidence dd {
+  overflow-wrap: anywhere;
+  color: var(--mm-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.mm-policy-evidence a {
+  color: var(--mm-amber);
+  font-weight: 700;
+}
+.mm-policy-terms-text {
+  margin-top: 28px;
+  padding: 24px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  border: 1px solid var(--mm-line);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--mm-muted);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.75;
+}
 /* ---------- TEMPLATE GALLERY ---------- */
 .mm-gtabs {
   display: flex;
