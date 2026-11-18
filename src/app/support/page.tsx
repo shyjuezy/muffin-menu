@@ -72,13 +72,6 @@ export default function SupportPage() {
                     (KDS or POS), your device type, and a short description or
                     screenshot of the problem.
                   </p>
-                  <p>
-                    For pricing or a demo, contact{" "}
-                    <a href="mailto:sales@muffinmenu.com">
-                      sales@muffinmenu.com
-                    </a>
-                    .
-                  </p>
                 </section>
 
                 {SECTIONS.map((section) => (
